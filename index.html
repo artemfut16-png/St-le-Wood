@@ -382,6 +382,123 @@ html{scroll-behavior:smooth;}
   #sw .cat-tabs{width:100%;justify-content:stretch;}
   #sw .cat-tab{flex:1;justify-content:center;}
 }
+
+/* ═══ MOBILE SUPER OPTIMIZATION ═══ */
+
+/* Убираем tap-highlight и 300ms задержку на всех интерактивных элементах */
+#sw button,#sw [onclick],#sw .cat-tab,#sw .quiz-option,#sw .messenger-btn,#sw .quiz-messenger-btn,#sw .gallery-arrow,#sw .nq-big-btn,#sw .project-card__btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+
+/* Предотвращаем iOS-зум при фокусе на инпутах */
+@media(max-width:768px){
+  #sw .form-input{font-size:16px!important;}
+}
+
+/* Скрываем скроллбары в горизонтальных зонах */
+#sw .quiz-steps,#sw .cat-tabs{scrollbar-width:none;}
+#sw .quiz-steps::-webkit-scrollbar,#sw .cat-tabs::-webkit-scrollbar{display:none;}
+
+/* ── Плавающая CTA-кнопка на мобильном ── */
+#sw .mob-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:890;padding:10px 14px 22px;background:linear-gradient(to top,rgba(5,10,48,1) 55%,rgba(5,10,48,0) 100%);pointer-events:none;transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);}
+#sw .mob-cta.mob-visible{transform:translateY(0);}
+#sw .mob-cta__btn{display:block;width:100%;padding:15px 20px;background:#fff;color:#161616;border:none;border-radius:var(--radius);font-family:var(--font);font-size:14px;font-weight:800;cursor:pointer;text-align:center;letter-spacing:0.02em;pointer-events:all;touch-action:manipulation;}
+#sw .mob-cta__btn:active{transform:scale(0.98);}
+@media(max-width:768px){#sw .mob-cta{display:block;}}
+
+/* ── Popup: нижний шторка на мобильном ── */
+@media(max-width:640px){
+  #sw .popup-overlay{align-items:flex-end;padding:0;}
+  #sw .popup-box{border-radius:20px 20px 0 0;max-width:100%;width:100%;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 20px 36px;}
+  #sw .popup-box::before{content:'';display:block;width:40px;height:4px;background:rgba(255,255,255,0.18);border-radius:2px;margin:12px auto 20px;flex-shrink:0;}
+}
+
+/* ── Cat-tabs: горизонтальный скролл вместо переноса ── */
+@media(max-width:640px){
+  #sw .cat-tabs{overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;}
+  #sw .cat-tab{flex:none;white-space:nowrap;}
+}
+
+/* ── Hero: лучше на маленьких экранах ── */
+@media(max-width:480px){
+  #sw .hero{padding:70px 14px 100px;}
+  #sw .hero__title{font-size:22px;line-height:1.2;}
+  #sw .hero__desc{font-size:13px;margin-bottom:20px;}
+}
+
+/* ── Кнопки: минимальная высота touch-target 44-50px ── */
+@media(max-width:640px){
+  #sw .btn-primary,#sw .btn-outline{min-height:48px;}
+  #sw .btn-submit,#sw .catalog-cta__btn{min-height:50px;padding:15px 24px;}
+  #sw .quiz-option{min-height:46px;padding:13px 14px;}
+  #sw .project-card__btn{min-height:44px;padding:12px;}
+  #sw .quiz-messenger-btn{min-height:46px;}
+}
+
+/* ── Quiz на мобильном ── */
+@media(max-width:640px){
+  #sw .nq-big-btn{min-height:135px;}
+  #sw .nq-big-btn__label{font-size:14px;padding:10px 14px 14px;}
+}
+@media(max-width:480px){
+  #sw .quiz-body{padding:20px 16px;}
+  #sw .quiz-question{font-size:15px;}
+  #sw .quiz-step-tab{padding:12px 6px;font-size:8px;}
+  #sw .quiz-discount{padding:12px 14px;font-size:11px;}
+}
+
+/* ── Галерея на маленьких экранах ── */
+@media(max-width:480px){
+  #sw .gallery-slide{flex:0 0 85%;}
+  #sw .gallery-header{flex-direction:column;align-items:flex-start;gap:10px;}
+}
+
+/* ── Карта встречи ── */
+@media(max-width:480px){
+  #sw .meeting-map{min-height:210px;}
+  #sw .meeting-info{padding:20px 16px;}
+  #sw .meeting-info__title{font-size:17px;}
+}
+
+/* ── Секции: компактнее на телефонах ── */
+@media(max-width:480px){
+  #sw .section{padding:32px 14px;}
+  #sw .section__header{margin-bottom:20px;}
+  #sw .form-card{padding:20px 16px;}
+  #sw .guarantee-card{padding:20px 16px;}
+  #sw .step-card{padding:18px 16px;}
+  #sw .excursion-card{padding:22px 16px;}
+  #sw .catalog-cta__left{padding:22px 16px;}
+  #sw .catalog-cta__title{font-size:18px;}
+  #sw .catalog-cta__right{min-height:160px;}
+  #sw .contract-row{padding:20px 16px;gap:14px;}
+  #sw .project-card__img{height:180px;}
+  #sw .cutaway-text{padding:22px 18px;}
+}
+
+/* ── Шаги и гарантии: 2 столбца на 640, 1 на 480 ── */
+@media(max-width:640px){
+  #sw .steps-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  #sw .steps-grid{grid-template-columns:1fr;}
+  #sw .guarantees-grid{grid-template-columns:1fr;}
+}
+
+/* ── Toast поднимаем над плавающей CTA ── */
+@media(max-width:640px){
+  #sw .toast{bottom:88px;left:12px;right:12px;max-width:100%;}
+}
+
+/* ── Footer: отступ снизу для плавающей CTA ── */
+@media(max-width:768px){
+  #sw .footer{padding-bottom:86px;}
+}
+
+/* ── Очень маленькие экраны (≤380px) ── */
+@media(max-width:380px){
+  #sw .mat-cards{grid-template-columns:1fr;}
+  #sw .hero__title{font-size:20px;}
+  #sw .section__title{font-size:20px;}
+}
 </style>
 </head>
 <body>
@@ -944,6 +1061,11 @@ html{scroll-behavior:smooth;}
   </div>
 </footer>
 
+<!-- FLOATING MOBILE CTA -->
+<div class="mob-cta" id="mobCta">
+  <button class="mob-cta__btn" onclick="openQuizPopup()">Рассчитать стоимость →</button>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast">
   <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -1465,6 +1587,20 @@ function initGallery(){
 function initAll(){initCutSlider();initGallery();}
 if(document.readyState==='complete'){initAll();}
 else{window.addEventListener('load',initAll);}
+
+// Floating mobile CTA — появляется после прокрутки hero
+(function(){
+  var mc=document.getElementById('mobCta');
+  var hero=document.querySelector('#sw .hero');
+  if(!mc||!hero)return;
+  function onScroll(){
+    var b=hero.getBoundingClientRect().bottom;
+    if(b<60){mc.classList.add('mob-visible');}
+    else{mc.classList.remove('mob-visible');}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
 </script>
 </body>
 </html>
